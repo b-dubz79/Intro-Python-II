@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -31,32 +32,75 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
-
+print(room['outside'].n_to)
 #
 # Main
 #
-# Create the input command parser in adv.py which allows the program to receive player input and commands to move to rooms in the four cardinal directions.
+# Plan: 
+# Ask user to play
+# Instantiate Person in 'outside' room
+# Offer player to move into the cave
+# If yes, change player's current room to 'foyer'
+# From here, give player cardinal options based on what is available
+# Change current room of player based on choice and print name/description
+# If player doesn't type accepted command,  ask again
+
+# Create the input command parser in adv.py which allows the program to receive player input and commands to move to rooms in the four cardinal directions. #
 question = input("do you want to play y/n")
 isPlaying = False
 
 if question.lower().strip() == 'y':
     isPlaying = True
-
-while isPlaying == True:
-    print(room['outside'])
-    break
-
-
-
-# Make a new player object that is currently in the 'outside' room.
-
-# Write a loop that:
-#
+#   Write a loop that:
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
+# Setting player variable to Player class instance. Player takes in currentRoom as an argument.  In this case it's "outside" which is defined above. 'room' is the dictionary name and 'outside' is a key that has a value of a 'Room' class instance. The Room class takes in name and description which is defined above in the Room instance.
+player = Player(room['outside'])
+while isPlaying:
+    # start player outside
+    print('butts',player.currentRoom)
+    question = input('Would you like to go e, w, s, n, q?')
+    if question == 'n':
+        player.move(question)
+    elif question == 'e':
+        player.move(question)
+    elif question == 'w':
+        player.move(question)
+    elif question == 's':
+        player.move(question)
+    elif question == 'q':
+        isPlaying = False
+    else:
+        print('enter valid direction')
+    
+    
+
+    
+
+
 # * Waits for user input and decides what to do.
+
+    
+    
+
+
+
+
+
+
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+###  name code if i want it for later ###
+# playerName = input('What is your name, hero?')
+    # player = Player(playerName, ' ')
+    # print(f"Good luck in there {playerName} , I coded this cave with 3 days experience.")
+
+    # question = input("Would you like to enter the beckoning cave? y/n")
+    # if question.lower().strip() == 'y':
+    #     # Make a new player object that is currently in the 'outside' room.
+    #     player = Player({playerName}, room['outside'] )
+    #     print(player)
