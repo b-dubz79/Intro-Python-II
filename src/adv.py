@@ -21,7 +21,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-print(room)
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -36,6 +35,18 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+# Create the input command parser in adv.py which allows the program to receive player input and commands to move to rooms in the four cardinal directions.
+question = input("do you want to play y/n")
+isPlaying = False
+
+if question.lower().strip() == 'y':
+    isPlaying = True
+
+while isPlaying == True:
+    print(room['outside'])
+    break
+
+
 
 # Make a new player object that is currently in the 'outside' room.
 
